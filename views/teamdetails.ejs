@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - <%= team.teamname %></title>
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="height: 100vh;">
+    <div class="wrapper">
+        <%- include('./partials/sidenav.ejs'); %>
+
+        <div class="main_content"> 
+            <div class="info">
+                <%- include('./partials/header.ejs'); %>
+                <h2><%= team.teamname %></h2>
+                <div id="contentWrapper">
+                    <div class="form-container">
+                        <div class="textInputDiv">
+                            <label for="teamname"><strong>Team Name</strong></label>
+                            <input type="text" id="name" name="teamname" placeholder="Team Name" value="<%= team.teamname %>" class="disabled" readonly>
+                        </div>
+                        <div class="textInputDiv">
+                            <label for="admin"><strong>Team Admin (you)</strong></label>
+                            <input type="text" id="name" name="admin" value="<%= team.admin %>" class="disabled" readonly>
+                        </div>
+                        <div class="textInputDiv">
+                            <label for="createdon"><strong>Team Created On</strong></label>
+                            <input type="date" name="createdon" value="<%= team.createdon %>" class="disabled" readonly>
+                        </div>
+                        <div class="textInputDiv" style="margin: 5px;">
+                            <strong>Team Members:</strong>  <i class="fas fa-user-shield" style="color: rgb(3, 112, 17);"></i><br>
+                        </div>
+                        <div class="textInputDiv" style="margin: 5px;">
+                            <strong>Users Invited:</strong> <i class="fas fa-user-check" style="color: blue;"></i> <br>
+                        </div>
+                        <div class="textInputDiv" style="margin: 5px;">
+                            <strong>Invite Users:</strong>  <i class="fas fa-user-plus" style="color:red;"></i> <br>
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <strong>All Users</strong>
+                        <div class="usersDiv">
+                            <ul>
+                                <% for (let j=0; j < teammembers.length; j++) { %>
+                                    <li>
+                                        <i class="fas fa-user-shield fa-2x" style="color: rgb(3, 112, 17);"></i>
+                                        Name: <%= teammembers[j].name %> <br>
+                                        Email: <%= teammembers[j].email %> <br>
+                                        Age: <%= teammembers[j].age %>
+                                    </li>
+                                <% } %>
+
+                                <% for(let i=0; i < invitaitionRecieved.length; i++) { %>
+                                    <li>
+                                        <i class="fas fa-user-check fa-2x" style="color: blue;"></i>
+                                        Name: <%= invitaitionRecieved[i].name %> <br>
+                                        Email: <%= invitaitionRecieved[i].email %> <br>
+                                        Age: <%= invitaitionRecieved[i].age %>
+                                    </li>
+                                <% } %>
+                                <% for(let i=0; i < invitaitionRejected.length; i++) { %>
+                                    <li>
+                                        <a href="/teams/details/invite/<%= team.id %>/<%= invitaitionRejected[i]._id %>">
+                                            <i class="fas fa-user-plus fa-2x" style="color:red;"></i>
+                                        </a>
+                                        Name: <%= invitaitionRejected[i].name %> <br>
+                                        Email: <%= invitaitionRejected[i].email %> <br>
+                                        Age: <%= invitaitionRejected[i].age %>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+    <!-- <script src="/public/js/script.js"></script> -->
+    <script src="/public/js/sidenav.js"></script>
+</body>
+</html>

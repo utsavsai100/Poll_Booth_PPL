@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll - <%= poll.title %></title>
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="height: 100%;">
+    <div class="wrapper">
+        <%- include('./partials/sidenav.ejs'); %>
+
+        <div class="main_content"> 
+            <div class="info">
+                <%- include('./partials/header.ejs'); %>
+                <h2><%= poll.title %> - Poll by <%= poll.teamname %></h2>
+                <div id="contentWrapper">
+                    <div class="form-container">
+                        <div class="usersDiv">
+                            <div class="textInputDiv">
+                                <label for="title"><strong>Poll Title</strong></label>
+                                <input type="text" id="name" name="title" placeholder="Poll Title" value="<%= poll.title %>" class="disabled"
+                                readonly>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="description"><strong>Poll Description</strong></label>
+                                <textarea type="text" id="description" name="description" placeholder="" rows="5" cols="50" value="" class="disabled" readonly ><%= poll.description %></textarea>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="teamname"><strong>Team Name</strong></label>
+                                <input type="name" id="teamname" name="teamname" value="<%= poll.teamname %>" placeholder="Name" class="disabled"
+                                    readonly>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="createdby"><strong>Poll Created By</strong></label>
+                                <input type="name" id="createdby" name="createdby" value="<%= poll.createdby %>" class="disabled"
+                                    readonly>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="createdon"><strong>Poll Created On</strong></label>
+                                <input type="date" id="" name="createdon" value="<%= poll.createdon %>" class="disabled" readonly>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="deadline"><strong>Poll Deadline</strong></label>
+                                <input type="date" id="deadlineDate" value="<%= poll.deadline %>" name="deadline" class="disabled"
+                                readonly>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="noofoptions"><strong>No of options</strong></label>
+                                <input type="number" id="noOfOptions" name="noofoptions" value="<%= poll.optionTitle.length %>" class="disabled"
+                                readonly>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <strong>Options</strong>
+                        <div class="usersDiv">
+                            <% if (poll.createdby == currentUser.name) { %>
+                                <% if (poll.pollActive == true) { %>
+                                    <strong>Note: </strong> Vote Counts and End Poll Button is only visible to the poll admin(you).
+                                <% } %>
+                            <% } %>  
+                            <ul id="optionDisplay">
+                                <% for (let i=0; i < poll.optionVoted.length; i++) { %>
+                                    <li>
+                                        <div>
+                                            <% if(poll.optionVoted[i].img == '') { %>
+                                                <img src="<%= poll.optionVoted[i].img %>" class="hide">
+                                            <% } else { %>
+                                            <img src="<%= poll.optionVoted[i].img %>" class="renderOptionImg">
+                                            <% } %>
+                                            
+                                            <div class="renderOptionTitle"> <%= poll.optionVoted[i].title %> </div> 
+                                        </div>
+                                       <% if (userVoted == false) { %>
+                                        <div>
+                                            <% if (poll.pollActive == true) { %>
+                                                <% if (poll.createdby == currentUser.name) { %>
+                                                    <span class=""> Vote Count - <%= poll.optionVoted[i].votes %> </span>
+                                                    <a href="/teams/polls/vote/done/<%= poll._id %>/<%= currentUser._id %>/<%= poll.optionVoted[i]._id %>" class="buttonAnchor"> Vote </a>
+                                                <% } else { %>
+                                                    <a href="/teams/polls/vote/done/<%= poll._id %>/<%= currentUser._id %>/<%= poll.optionVoted[i]._id %>" class="buttonAnchor"> Vote </a> 
+                                                <% } %>
+                                            <% } else { %>
+                                                <span class=""> Vote Count - <%= poll.optionVoted[i].votes %> </span>
+                                                <a class="buttonAnchorDisabled"> Vote </a>
+                                            <% } %>
+                                        </div>
+                                       <% } else { %>
+                                        <div>
+                                            <% if (poll.pollActive == true) { %>
+                                                <% if (poll.createdby == currentUser.name) { %>
+                                                    <span class=""> Vote Count - <%= poll.optionVoted[i].votes %> </span>
+                                                    <a class="buttonAnchorDisabled"> Vote </a>
+                                                <% } else { %>
+                                                    <a class="buttonAnchorDisabled"> Vote </a> 
+                                                <% } %>
+                                            <% } else { %>
+                                                <span class=""> Vote Count - <%= poll.optionVoted[i].votes %> </span>
+                                                <a class="buttonAnchorDisabled"> Vote </a>
+                                            <% } %>
+                                        </div>
+                                       <% } %> 
+                                    </li>
+                                <% } %>
+                            </ul>
+                            <% if (userVoted == true) { %>
+                                <a style="background-color: rgba(51, 255, 0, 0.795);" class="buttonAnchorDisabled">You have successfully voted</a>
+                            <% } else { %>
+                                <a style="background-color: rgba(238, 84, 73, 0.836);" class="buttonAnchorDisabled">You haven't voted</a>
+                            <% } %>
+                            
+                            <% if (poll.createdby == currentUser.name) { %>
+                                <% if (poll.pollActive == true) { %>
+                                    <a href="/teams/polls/vote/end/<%= poll._id %>/<%= currentUser._id %>" style="background-color: red;" class="buttonAnchor">End Poll</a>
+                                <% } else { %>
+                                    <a style="background-color: rgba(255, 0, 0, 0.726);" class="buttonAnchorDisabled">Poll Ended</a>
+                                <% } %>
+                            <% } else { %>
+                                <% if (poll.pollActive == false) { %>
+                                    <a style="background-color: rgba(255, 0, 0, 0.719);" class="buttonAnchorDisabled">Poll Ended</a>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+    <script src="/public/js/sidenav.js"></script>
+</body>
+</html>

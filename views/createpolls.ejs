@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Polls</title>
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body style="height: 100vh;">
+    <div class="wrapper">
+        <%- include('./partials/sidenav.ejs'); %>
+
+            <div class="main_content">
+                <div class="info">
+                    <%- include('./partials/header.ejs'); %>
+                    <h2>Create New Poll - <%= team.teamname %></h2>
+                    <form action="/teams/polls/create/<%= team._id %>/<%= currentUser._id %>" method="POST">
+                        <div id="contentWrapper">
+                            <div class="form-container">
+                                <div class="textInputDiv">
+                                    <label for="title"><strong>Poll Title</strong></label>
+                                    <input type="text" id="name" name="title" placeholder="Poll Title" required>
+                                </div>
+                                <div class="textInputDiv">
+                                    <label for="description"><strong>Poll Description</strong></label>
+                                    <textarea type="text" id="description" name="description"
+                                        placeholder="Poll Description" rows="5" required></textarea>
+                                </div>
+                                <div class="textInputDiv">
+                                    <label for="teamname"><strong>Team Name</strong></label>
+                                    <input type="name" id="teamname" name="teamname" value="<%= team.teamname %>" placeholder="Name" class="disabled"
+                                        readonly>
+                                </div>
+                                <div class="textInputDiv">
+                                    <label for="createdby"><strong>Poll Created By (you)</strong></label>
+                                    <input type="name" id="createdby" name="createdby" value="<%= currentUser.name %>" class="disabled"
+                                        readonly>
+                                </div>
+                                <div class="textInputDiv">
+                                    <label for="createdon"><strong>Poll Created On</strong></label>
+                                    <input type="date" id="todayDate" name="createdon" class="disabled" readonly>
+                                </div>
+                                <div class="textInputDiv">
+                                    <label for="deadline"><strong>Poll Deadline</strong></label>
+                                    <input type="date" id="deadlineDate" name="deadline" required>
+                                </div>
+                                <div class="textInputDiv">
+                                    <label for="noofoptions"><strong>No of options</strong></label>
+                                    <input type="number" id="noOfOptions" name="noofoptions" min="2" required>
+                                </div> 
+                            </div>
+                            <div class="form-container">
+                                <div class="textInputDiv">
+
+                                    <strong>Options</strong>
+                                    <div class="usersDiv">
+                                        <strong>Note: </strong> You can leave the Image Link Box empty, if you don't want to display images in the options.
+                                        <ul id="optionDisplay">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button type="submit" id="submit">Create New Poll</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <script src="/public/js/polls-options.js"></script>
+    <script src="/public/js/render-date.js"></script>
+    <script src="/public/js/sidenav.js"></script>
+</body>
+
+</html>

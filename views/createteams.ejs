@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Teams</title>
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="height: 100vh;"> 
+    <div class="wrapper">
+        <%- include('./partials/sidenav.ejs'); %>
+
+        <div class="main_content"> 
+            <div class="info">
+                <%- include('./partials/header.ejs'); %>
+                <h2>Create New Team</h2>
+                <div id="contentWrapper">
+                    <div class="form-container">
+                        <form action="/<%= currentUser.id %>/createteams" method="POST">
+                            <div class="textInputDiv">
+                                <label for="teamname"><strong>Team Name</strong></label>
+                                <input type="text" id="name" name="teamname" placeholder="Team Name" value="" required>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="admin"><strong>Team Admin (you)</strong></label>
+                                <input type="text" id="name" name="admin" value="<%= currentUser.name %>" class="disabled" readonly>
+                            </div>
+                            <div class="textInputDiv">
+                                <label for="createdon"><strong>Team Created On</strong></label>
+                                <input type="date" id="todayDate" name="createdon" class="disabled" readonly>
+                            </div>
+                            <button type="submit" id="submit">Create New Team</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/public/js/sidenav.js"></script>
+    <script src="/public/js/render-date.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="heading">
+        <i class="fas fa-poll fa-2x"></i>
+        <h1>Poll Booth</h1>
+    </div>
+    <h2>Login Form</h2>
+    <div id="wrapper">
+        <div>
+            <div id="messageDiv">
+                <div id="message">
+                    <% if (message != '') { %>
+                        <%= message %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="form-container">
+                <form action="/login" method="POST">
+                    <div class="textInputDiv">
+                        <label for="email"><b>Email</b></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="textInputDiv">
+                        <label for="password"></i><b>Password</b></label>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                    </div>
+
+                    <button type="submit" id="submit">Login</button>
+                </form>
+            </div>
+            <div id="bottomLine">Don't have an account? <a href="/signup"> Sign Up</a></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

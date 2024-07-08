@@ -1,0 +1,247 @@
+.disabled {
+    background-color: rgba(204, 204, 204, 0.507);
+}
+
+textarea {
+    font-size: 15px;
+    min-height: 40px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 5px;
+    resize: vertical;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#contentWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    max-height: 575px;
+    overflow-y: auto;
+    margin: 10px;
+    padding: 10px;
+    width: 500px;
+    border: 1px solid rgb(218, 223, 224);
+    box-shadow: 0px 0px 6px 0px rgb(77, 207, 230);
+    /* background-color: rgb(200, 236, 245); */
+    border-radius: 10px;
+}
+
+.textInputDiv input {
+    font-size: 15px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 5px;
+}
+
+.radioInputDiv #male {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.radioInputDiv #female {
+    margin-bottom: 10px;
+}
+
+.radioInputDiv label:hover, .radioInputDiv input:hover {
+    cursor: pointer;
+}
+
+#submit, #addOption {
+    background-color: #1d44f5;
+    border-radius: 5px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    width: 100%;
+    font-size: 18px;
+}
+
+#submit:hover, #addOption:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.usersDiv {
+    /* width: 400px; */
+    width: 100%;
+    height: 100%;
+    /* height: 400px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    background-color: rgb(200, 236, 245);
+    padding: 10px;
+    border-radius: 5px;
+    /* max-height: 100px; */
+    overflow: auto;
+}
+
+.usersDiv li {
+    margin: 10px;
+    background-color: rgb(18, 241, 204);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.usersDiv li i {
+    float: right;
+}
+
+
+
+.optionsInput {
+    background-color: white;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+.buttonsDiv {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 5px;
+}
+.buttonAnchor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1d44f5;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    font-size: 18px;
+    margin: 5px;
+    cursor: pointer;
+}
+.buttonAnchorDisabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1d45f569;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    font-size: 18px;
+    margin: 5px;
+    cursor: not-allowed;
+}
+.buttonAnchor:hover {
+    opacity: 0.8;
+}
+
+.renderOptionImg {
+    width: 150px;
+    height: 150px;
+    border: 4px solid #1d44f5;
+    margin-bottom: 0;
+}
+
+#optionDisplay li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.renderOptionTitle {
+    width: 150px;
+    overflow-x: auto;
+    height: auto;
+    background-color: #1d44f5;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.optionsInput {
+    margin: 5px;
+    border: 3px black solid;
+}
+
+.optionsInput input {
+    font-size: 15px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 5px;
+}
+
+.hide {
+    display: none;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0f1ef8;
+    border-radius: 50px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #0f1ef883;
+}
+
+/* media queries */
+@media (max-width: 800px) {
+    #contentWrapper {
+        display: block;
+    }
+    .form-container {
+        width: 95%
+    }
+}
+@media (max-width: 600px) {
+    .buttonsDiv {
+        display: block;
+    }
+    h1 {
+        font-size: 30px;
+    }
+}
+@media (max-width: 350px) {
+    body {
+        font-size: 15px;
+    }
+    #submit {
+        font-size: 15px;
+    }
+    .textInputDiv input {
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 25px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+

@@ -1,0 +1,19 @@
+<div class="sidebar">
+    <div id="profile">
+        <div>
+            <img src="/public/img/avatar.png" class="symbolName">
+            <div id="role">Role</div>
+            <div id="username"> <%= currentUser.name %></div>
+            <div id="usernameIcon"><i class="fas fa-user fa-2x"></i></div>
+            <div id="profileLink"><a href="/profile"><i class="fas fa-user"></i><span class="symbolName">Visit Profile</span></a></div>
+        </div>
+    </div>
+    <ul>
+        <li><a href="/dashboard"><i class="fas fa-home"></i><span class="symbolName">Dashboard</span></a></li>
+        <li><a href="/<%= currentUser._id %>/notifications"><i class="fas fa-bell"></i><span class="symbolName">Notifications</span><span id="countBell"></span></a></li>
+        <li><a href="/<%= currentUser._id %>/createteams"><i class="fas fa-user-plus"></i><span class="symbolName">Create Team</span></a></li>
+        <li><a href="/<%= currentUser._id %>/teams"><i class="fas fa-users"></i></i><span class="symbolName">Your Teams</span></a></li>
+        <li><a href="/users"><i class="fas fa-users-cog"></i></i><span class="symbolName">All Users</span></a></li>
+        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i><span class="symbolName">Logout</span></a></li>
+    </ul>
+</div>

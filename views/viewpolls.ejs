@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polls</title>
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="height: 100vh;">
+    <div class="wrapper">
+        <%- include('./partials/sidenav.ejs'); %>
+
+        <div class="main_content"> 
+            <div class="info">
+                <%- include('./partials/header.ejs'); %>
+                <h2><%= team.teamname %> - Polls</h2>
+
+                <div id="contentWrapper">
+                    <div class="form-container">
+                        <div class="usersDiv">
+                            <ul>
+                                <% for(let i=0; i < teamPolls.length; i++) { %>
+                                    <li>
+                                        <i class="fas fa-poll fa-2x"></i>
+                                        <h3><%= teamPolls[i].title %> </h3><br>
+                                        Description - <%= teamPolls[i].description %><br>
+                                        Team - <%= teamPolls[i].teamname %><br>
+                                        Created By - <%= teamPolls[i].createdby %><br>
+                                        Created On - <%= teamPolls[i].createdon %><br>
+                                        Deadline - <%= teamPolls[i].deadline %>
+                                        <div class="buttonsDiv">
+                                            <a href='/teams/polls/vote/<%= teamPolls[i]._id %>/<%= currentUser._id %>' class="buttonAnchor">Caste Vote</a>
+                                        </div>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>>
+    <script src="/public/js/sidenav.js"></script>
+</body>
+</html>
